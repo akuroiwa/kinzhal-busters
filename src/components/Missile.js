@@ -2,33 +2,31 @@ import * as THREE from 'three';
 
 export class Missile {
   constructor(startPosition, targetPosition) {
-    // Create elongated missile shape
-    const geometry = new THREE.CylinderGeometry(0.3, 0.3, 3, 16);
-    const noseCone = new THREE.ConeGeometry(0.3, 1, 16);
+    // Changed missile shape to cone
+    const geometry = new THREE.ConeGeometry(0.3, 2, 16);
     const material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
-    
-    // Create missile body
-    this.mesh = new THREE.Group();
-    const body = new THREE.Mesh(geometry, material);
-    const nose = new THREE.Mesh(noseCone, material);
-    
-    // Position nose cone at the front
-    nose.position.y = 2;
-    body.rotation.z = Math.PI / 2;
-    nose.rotation.z = Math.PI / 2;
-    
-    this.mesh.add(body);
-    this.mesh.add(nose);
+
+    this.mesh = new THREE.Mesh(geometry, material);
     this.mesh.position.copy(startPosition);
-    
+
+    // Calculate heading direction
     this.velocity = new THREE.Vector3()
       .subVectors(targetPosition, startPosition)
       .normalize()
       .multiplyScalar(0.3);
+
+    // Set the initial orientation
+    this.mesh.lookAt(targetPosition);
+
+    // Rotate the cone 90 degrees so that the tip faces the direction of travel
+    this.mesh.rotateX(Math.PI / 2);
   }
 
   update() {
     this.mesh.position.add(this.velocity);
+    // Update orientation to direction of travel
     this.mesh.lookAt(this.mesh.position.clone().add(this.velocity));
+    // Rotate the cone 90 degrees so that the tip faces the direction of travel
+    this.mesh.rotateX(Math.PI / 2);
   }
 }

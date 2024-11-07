@@ -1,8 +1,11 @@
 {
-  "name": "missile-defense-simulation",
+  "name": "kinzhal-busters",
+  "version": "0.0.1",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "description": "A missile defense system simulation using multiple drones, developed with Vite. Employs Particle Swarm Optimization for optimizing drone behavior and interception strategies.",
+  "license": "GPL-3.0",
+  "repository": "github:akuroiwa/kinzhal-busters",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -14,5 +17,20 @@
   },
   "devDependencies": {
     "vite": "^5.0.0"
-  }
+  },
+  "author": {
+    "name": "Akihiro Kuroiwa",
+    "email": "akuroiwa@env-reform.com",
+    "url": "https://github.com/akuroiwa"
+  },
+  "contributors": [
+    {
+      "name": "bolt.new",
+      "url": "https://bolt.new/"
+    },
+    {
+      "name": "Perplexity AI",
+      "url": "https://www.perplexity.ai/"
+    }
+  ]
 }
